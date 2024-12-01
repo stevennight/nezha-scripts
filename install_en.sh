@@ -376,22 +376,20 @@ install_agent() {
 
     echo "Downloading Agent"
     if [ -z "$CN" ]; then
-        NZ_AGENT_URL="https://${GITHUB_URL}/stevennight/nezha-agent/releases/download/${_version}/nezha-agent_${_version}_linux_${os_arch}.tar.gz"
+        NZ_AGENT_URL="https://${GITHUB_URL}/stevennight/nezha-agent/releases/download/${_version}/nezha-agent_linux_${os_arch}.zip"
     else
-        NZ_AGENT_URL="https://${GITHUB_URL}/stevennight/nezha-agent/releases/download/${_version}/nezha-agent_${_version}_linux_${os_arch}.tar.gz"
+        NZ_AGENT_URL="https://${GITHUB_URL}/stevennight/nezha-agent/releases/download/${_version}/nezha-agent_linux_${os_arch}.zip"
     fi
 
-    echo $NZ_AGENT_URL
-
-    _cmd="wget -t 2 -T 60 -O nezha-agent_linux_${os_arch}.tar.gz $NZ_AGENT_URL >/dev/null 2>&1"
+    _cmd="wget -t 2 -T 60 -O nezha-agent_linux_${os_arch}.zip $NZ_AGENT_URL >/dev/null 2>&1"
     if ! eval "$_cmd"; then
         err "Fail to download agent, please check if the network can link ${GITHUB_URL}"
         return 1
     fi
 
-    sudo tar xvzf nezha-agent_linux_${os_arch}.tar.gz &&
+    sudo unzip -qo nezha-agent_linux_${os_arch}.zip &&
         sudo mv nezha-agent $NZ_AGENT_PATH &&
-        sudo rm -rf nezha-agent_linux_${os_arch}.tar.gz README.md
+        sudo rm -rf nezha-agent_linux_${os_arch}.zip README.md
 
     if [ $# -ge 3 ]; then
         modify_agent_config "$@"
