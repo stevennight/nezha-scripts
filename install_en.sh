@@ -122,26 +122,23 @@ pre_check() {
         GITHUB_URL=$CUSTOM_MIRROR
         Get_Docker_URL="get.docker.com"
         Get_Docker_Argu=" -s docker --mirror Aliyun"
-        Docker_IMG="registry.cn-shanghai.aliyuncs.com\/naibahq\/nezha-dashboard"
+        Docker_IMG="registry.cn-shanghai.aliyuncs.com\/stevennight\/nezha-dashboard"
     else
         if [ -z "$CN" ]; then
             GITHUB_RAW_URL="raw.githubusercontent.com/stevennight/nezha-scripts/v0"
             GITHUB_URL="github.com"
             Get_Docker_URL="get.docker.com"
             Get_Docker_Argu=" "
-            Docker_IMG="stevennight\/nezha"
+            Docker_IMG="ghcr.io\/stevennight\/nezha-dashboard"
         else
             GITHUB_RAW_URL="raw.githubusercontent.com/stevennight/nezha-scripts/v0"
             GITHUB_URL="github.com"
-            Get_Docker_URL="get.docker.com"
-            Get_Docker_Argu=" "
-            Docker_IMG="stevennight\/nezha"
             # todo 国内源
 #            GITHUB_RAW_URL="gitee.com/naibahq/scripts/raw/main"
 #            GITHUB_URL="gitee.com"
-#            Get_Docker_URL="get.docker.com"
-#            Get_Docker_Argu=" -s docker --mirror Aliyun"
-#            Docker_IMG="registry.cn-shanghai.aliyuncs.com\/naibahq\/nezha-dashboard"
+            Get_Docker_URL="get.docker.com"
+            Get_Docker_Argu=" -s docker --mirror Aliyun"
+            Docker_IMG="registry.cn-shanghai.aliyuncs.com\/stevennight\/nezha-dashboard"
         fi
     fi
 }
