@@ -375,6 +375,8 @@ install_agent() {
         NZ_AGENT_URL="https://${GITHUB_URL}/stevennight/nezha-agent/releases/download/${_version}/nezha-agent_linux_${os_arch}.zip"
     fi
 
+    echo "${NZ_AGENT_URL}"
+
     _cmd="wget -t 2 -T 60 -O nezha-agent_linux_${os_arch}.zip $NZ_AGENT_URL >/dev/null 2>&1"
     if ! eval "$_cmd"; then
         err "{{.ErrorDownloadAgent}} ${GITHUB_URL}"
