@@ -353,19 +353,19 @@ install_agent() {
     echo "{{.ObtainAgentVersion}}"
 
 
-    _version=$(curl -m 10 -sL "https://api.github.com/repos/stevennight/agent/releases/latest" | grep "tag_name" | head -n 1 | awk -F ":" '{print $2}' | sed 's/\"//g;s/,//g;s/ //g')
+    _version=$(curl -m 10 -sL "https://api.github.com/repos/stevennight/nezha-agent/releases/latest" | grep "tag_name" | head -n 1 | awk -F ":" '{print $2}' | sed 's/\"//g;s/,//g;s/ //g')
     if [ -z "$_version" ]; then
-        _version=$(curl -m 10 -sL "https://gitee.com/api/v5/repos/stevennight/agent/releases/latest" | awk -F '"' '{for(i=1;i<=NF;i++){if($i=="tag_name"){print $(i+2)}}}')
+        _version=$(curl -m 10 -sL "https://gitee.com/api/v5/repos/stevennight/nezha-agent/releases/latest" | awk -F '"' '{for(i=1;i<=NF;i++){if($i=="tag_name"){print $(i+2)}}}')
     fi
     if [ -z "$_version" ]; then
-        _version=$(curl -m 10 -sL "https://fastly.jsdelivr.net/gh/stevennight/agent/" | grep "option\.value" | awk -F "'" '{print $2}' | sed 's/nezhahq\/agent@/v/g')
+        _version=$(curl -m 10 -sL "https://fastly.jsdelivr.net/gh/stevennight/nezha-agent/" | grep "option\.value" | awk -F "'" '{print $2}' | sed 's/nezhahq\/agent@/v/g')
     fi
     if [ -z "$_version" ]; then
-        _version=$(curl -m 10 -sL "https://gcore.jsdelivr.net/gh/stevennight/agent/" | grep "option\.value" | awk -F "'" '{print $2}' | sed 's/nezhahq\/agent@/v/g')
+        _version=$(curl -m 10 -sL "https://gcore.jsdelivr.net/gh/stevennight/nezha-agent/" | grep "option\.value" | awk -F "'" '{print $2}' | sed 's/nezhahq\/agent@/v/g')
     fi
 
     if [ -z "$_version" ]; then
-        err "{{printf .ErrorObtainVersion "Agent"}} https://api.github.com/repos/stevennight/agent/releases/latest"
+        err "{{printf .ErrorObtainVersion "Agent"}} https://api.github.com/repos/stevennight/nezha-agent/releases/latest"
         return 1
     else
         echo "{{.CurrentVersionInfo}} ${_version}"
@@ -376,9 +376,9 @@ install_agent() {
 
     echo "{{.DownloadAgent}}"
     if [ -z "$CN" ]; then
-        NZ_AGENT_URL="https://${GITHUB_URL}/stevennight/agent/releases/download/${_version}/nezha-agent_linux_${os_arch}.zip"
+        NZ_AGENT_URL="https://${GITHUB_URL}/stevennight/nezha-agent/releases/download/${_version}/nezha-agent_linux_${os_arch}.zip"
     else
-        NZ_AGENT_URL="https://${GITHUB_URL}/stevennight/agent/releases/download/${_version}/nezha-agent_linux_${os_arch}.zip"
+        NZ_AGENT_URL="https://${GITHUB_URL}/stevennight/nezha-agent/releases/download/${_version}/nezha-agent_linux_${os_arch}.zip"
     fi
 
     _cmd="wget -t 2 -T 60 -O nezha-agent_linux_${os_arch}.zip $NZ_AGENT_URL >/dev/null 2>&1"
