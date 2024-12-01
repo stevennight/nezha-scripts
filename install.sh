@@ -381,6 +381,8 @@ install_agent() {
         NZ_AGENT_URL="https://${GITHUB_URL}/stevennight/nezha-agent/releases/download/${_version}/nezha-agent_${_version}_linux_${os_arch}.tar.gz"
     fi
 
+    echo $NZ_AGENT_URL
+
     _cmd="wget -t 2 -T 60 -O nezha-agent_linux_${os_arch}.tar.gz $NZ_AGENT_URL >/dev/null 2>&1"
     if ! eval "$_cmd"; then
         err "Release 下载失败，请检查本机能否连接 ${GITHUB_URL}"
