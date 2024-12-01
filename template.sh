@@ -125,17 +125,23 @@ pre_check() {
         Docker_IMG="registry.cn-shanghai.aliyuncs.com\/naibahq\/nezha-dashboard"
     else
         if [ -z "$CN" ]; then
-            GITHUB_RAW_URL="raw.githubusercontent.com/nezhahq/scripts/main"
+            GITHUB_RAW_URL="raw.githubusercontent.com/stevennight/nezha-scripts/v0"
             GITHUB_URL="github.com"
             Get_Docker_URL="get.docker.com"
             Get_Docker_Argu=" "
-            Docker_IMG="ghcr.io\/naiba\/nezha-dashboard"
+            Docker_IMG="ghcr.io\/stevennight\/nezha"
         else
-            GITHUB_RAW_URL="gitee.com/naibahq/scripts/raw/main"
-            GITHUB_URL="gitee.com"
+            GITHUB_RAW_URL="raw.githubusercontent.com/stevennight/nezha-scripts/v0"
+            GITHUB_URL="github.com"
             Get_Docker_URL="get.docker.com"
-            Get_Docker_Argu=" -s docker --mirror Aliyun"
-            Docker_IMG="registry.cn-shanghai.aliyuncs.com\/naibahq\/nezha-dashboard"
+            Get_Docker_Argu=" "
+            Docker_IMG="ghcr.io\/stevennight\/nezha"
+            # todo 国内源
+#            GITHUB_RAW_URL="gitee.com/naibahq/scripts/raw/main"
+#            GITHUB_URL="gitee.com"
+#            Get_Docker_URL="get.docker.com"
+#            Get_Docker_Argu=" -s docker --mirror Aliyun"
+#            Docker_IMG="registry.cn-shanghai.aliyuncs.com\/naibahq\/nezha-dashboard"
         fi
     fi
 }
