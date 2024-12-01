@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   dashboard:
-    image: nz_image_url:v0
+    image: nz_image_url
     restart: always
     volumes:
       - ./data:/dashboard/data
