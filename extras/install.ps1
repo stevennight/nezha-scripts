@@ -6,7 +6,7 @@ if($PSVersionTable.PSVersion.Major -lt 5){
     Write-Host "Refer to the community article and install manually! https://nyko.me/2020/12/13/nezha-windows-client.html" -BackgroundColor DarkRed -ForegroundColor Green
     exit
 }
-$agentrepo = "nezhahq/agent"
+$agentrepo = "stevennight/nezha-agent"
 #  x86 or x64 or arm64
 if ([System.Environment]::Is64BitOperatingSystem) {
     if ($env:PROCESSOR_ARCHITECTURE -eq "ARM64") {
@@ -68,7 +68,8 @@ if($region -ne "CN"){
 $download = "https://github.com/$agentrepo/releases/download/$agenttag/$file"
 Write-Host "Location:$region,connect directly!" -BackgroundColor DarkRed -ForegroundColor Green
 }else{
-$download = "https://gitee.com/naibahq/agent/releases/download/$agenttag/$file"
+$download = "https://github.com/$agentrepo/releases/download/$agenttag/$file"
+#$download = "https://gitee.com/naibahq/agent/releases/download/$agenttag/$file"
 Write-Host "Location:CN,use mirror address" -BackgroundColor DarkRed -ForegroundColor Green
 }
 echo $download
