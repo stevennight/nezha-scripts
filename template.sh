@@ -118,7 +118,7 @@ pre_check() {
     fi
 
     if [ -n "$CUSTOM_MIRROR" ]; then
-        GITHUB_RAW_URL="gitee.com/naibahq/scripts/raw/main"
+        GITHUB_RAW_URL="gitee.com/StevenNight/nezha-scripts/raw/v0"
         GITHUB_URL=$CUSTOM_MIRROR
         Get_Docker_URL="get.docker.com"
         Get_Docker_Argu=" -s docker --mirror Aliyun"
@@ -131,11 +131,8 @@ pre_check() {
             Get_Docker_Argu=" "
             Docker_IMG="ghcr.io\/stevennight\/nezha-dashboard"
         else
-            GITHUB_RAW_URL="raw.githubusercontent.com/stevennight/nezha-scripts/v0"
-            GITHUB_URL="github.com"
-            # todo 国内源
-#            GITHUB_RAW_URL="gitee.com/naibahq/scripts/raw/main"
-#            GITHUB_URL="gitee.com"
+            GITHUB_RAW_URL="gitee.com/StevenNight/nezha-scripts/raw/v0"
+            GITHUB_URL="gitee.com"
             Get_Docker_URL="get.docker.com"
             Get_Docker_Argu=" -s docker --mirror Aliyun"
             Docker_IMG="registry.cn-shanghai.aliyuncs.com\/stevennight\/nezha-dashboard"
@@ -352,7 +349,7 @@ install_agent() {
 
     _version=$(curl -m 10 -sL "https://api.github.com/repos/stevennight/nezha-agent/releases/latest" | grep "tag_name" | head -n 1 | awk -F ":" '{print $2}' | sed 's/\"//g;s/,//g;s/ //g')
     if [ -z "$_version" ]; then
-        _version=$(curl -m 10 -sL "https://gitee.com/api/v5/repos/stevennight/nezha-agent/releases/latest" | awk -F '"' '{for(i=1;i<=NF;i++){if($i=="tag_name"){print $(i+2)}}}')
+        _version=$(curl -m 10 -sL "https://gitee.com/api/v5/repos/StevenNight/nezha-agent/releases/latest" | awk -F '"' '{for(i=1;i<=NF;i++){if($i=="tag_name"){print $(i+2)}}}')
     fi
     if [ -z "$_version" ]; then
         _version=$(curl -m 10 -sL "https://fastly.jsdelivr.net/gh/stevennight/nezha-agent/" | grep "option\.value" | awk -F "'" '{print $2}' | sed 's/nezhahq\/agent@/v/g')
@@ -585,7 +582,7 @@ restart_and_update_standalone() {
         _version=$(curl -m 10 -sL "https://gcore.jsdelivr.net/gh/stevennight/nezha/" | grep "option\.value" | awk -F "'" '{print $2}' | sed 's/stevennight\/nezha@/v/g')
     fi
     if [ -z "$_version" ]; then
-        _version=$(curl -m 10 -sL "https://gitee.com/api/v5/repos/stevennight/nezha/releases/latest" | awk -F '"' '{for(i=1;i<=NF;i++){if($i=="tag_name"){print $(i+2)}}}')
+        _version=$(curl -m 10 -sL "https://gitee.com/api/v5/repos/StevenNight/nezha/releases/latest" | awk -F '"' '{for(i=1;i<=NF;i++){if($i=="tag_name"){print $(i+2)}}}')
     fi
 
     if [ -z "$_version" ]; then
